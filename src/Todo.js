@@ -21,14 +21,14 @@ const useStyles = makeStyles((theme) => ({
 function Todo(props) {
     const classes = useStyles();
     const [open , setOpen] = useState(false);
-    const [input ,setInput] = useState();
+    const [input ,setInput] = useState('');
 
     const handleOpen = () => {
         setOpen(true);
     }
 
     const updateTodo = () => {
-        db.collection('todo').doc(props.todo.id).set({
+        db.collection('todos').doc(props.todo.id).set({
             todo : input
         }, {merge : true});
 
