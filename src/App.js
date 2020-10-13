@@ -19,7 +19,7 @@ function App() {
     
     db.collection('todos').orderBy('timestamp' , 'desc').onSnapshot(snapshot => {
       // console.log(setTodos(snapshot.docs.map(doc => doc.data())))
-      setTodos(snapshot.docs.map(doc => doc.data().todo));
+      setTodos(snapshot.docs.map(doc => ({id : doc.id , todo : doc.data().todo})));
     });
   }, []);
 
@@ -52,7 +52,7 @@ function App() {
       
       <ul>
         {todos.map(todo => (
-          <Todo text={todo}/>
+          <Todo todo={todo}/>
           //<li>{todo}</li>
         ))}
       </ul>
